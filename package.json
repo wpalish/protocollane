@@ -1,0 +1,14 @@
+{
+  "name": "protocollane",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Проверяемые задачи из вставленного протокола: точная цитата, ответственный, срок и состояние. Аудиозапись и ASR отсутствуют.",
+  "engines": {
+    "node": ">=24.15 <25"
+  },
+  "scripts": {
+    "start": "node start.js",
+    "test": "node --test tests/*.test.js"
+  }
+}

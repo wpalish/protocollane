@@ -1,0 +1,35 @@
+[
+  {
+    "collection": "meetings",
+    "as": "m",
+    "data": {
+      "title": "Учебная встреча",
+      "date": "2026-10-24",
+      "transcript": "Тестовый сотрудник подготовит вымышленный отчёт к пятнице.",
+      "status": "draft"
+    }
+  },
+  {
+    "collection": "tasks",
+    "data": {
+      "meeting": "$m",
+      "quote": "подготовит вымышленный отчёт",
+      "action": "Подготовить тестовый отчёт",
+      "owner": "TEST",
+      "due": "2026-10-30",
+      "status": "open"
+    }
+  },
+  {
+    "collection": "tasks",
+    "error": "Цитата",
+    "data": {
+      "meeting": "$m",
+      "quote": "Этого никто не говорил",
+      "action": "Ложная задача",
+      "owner": "TEST",
+      "due": "2026-10-30",
+      "status": "open"
+    }
+  }
+]
