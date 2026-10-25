@@ -51,15 +51,35 @@ const definition = {
     ]),
   ],
   validate(state, before, command, actor) {
-    for (const task of live(state, "tasks"))
+    for (const task of live(state, "tasks")) {
+      const meeting = byId(state, "meetings", task.meeting),
+        old = changed(before, "tasks", task.id);
+      if (
+        !old ||
+        old.meeting !== task.meeting ||
+        (old.status !== "open" && task.status === "open")
+      )
+        required(
+          !meeting.archived,
+          "Новая связь или повторное открытие задачи требуют неархивного протокола.",
+        );
       required(
-        byId(state, "meetings", task.meeting).transcript.includes(task.quote),
+        meeting.transcript.includes(task.quote),
         "Цитата не найдена в исходном протоколе.",
       );
+    }
     for (const m of rows(state, "meetings")) {
       const old = changed(before, "meetings", m.id);
       if (old?.status === "reviewed")
         immutable(old, m, ["title", "date", "transcript"]);
+      if (old && old.transcript !== m.transcript)
+        for (const task of rows(before, "tasks").filter(
+          (t) => t.meeting === m.id && old.transcript.includes(t.quote),
+        ))
+          required(
+            m.transcript.includes(task.quote),
+            "Сохраните исходные цитаты задач, включая архивные, или создайте новый протокол.",
+          );
     }
   },
   summarize(state) {

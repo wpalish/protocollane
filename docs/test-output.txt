@@ -1,34 +1,52 @@
 TAP version 13
-# Subtest: ProtocolLane: complete original workflow, calculation and rejected invalid transition
-ok 1 - ProtocolLane: complete original workflow, calculation and rejected invalid transition
+# Subtest: archived task quote protects its draft transcript while source-preserving corrections remain possible
+ok 1 - archived task quote protects its draft transcript while source-preserving corrections remain possible
   ---
-  duration_ms: 2.760125
+  duration_ms: 4.031333
+  type: 'test'
+  ...
+# Subtest: archived meeting rejects new/retargeted tasks and reopening;existing open work may finish and history may be corrected
+ok 2 - archived meeting rejects new/retargeted tasks and reopening;existing open work may finish and history may be corrected
+  ---
+  duration_ms: 1.297917
+  type: 'test'
+  ...
+# Subtest: file restart and empty restore retain archival guards without freezing legacy invalid archived quotes
+ok 3 - file restart and empty restore retain archival guards without freezing legacy invalid archived quotes
+  ---
+  duration_ms: 4.142666
+  type: 'test'
+  ...
+# Subtest: ProtocolLane: complete original workflow, calculation and rejected invalid transition
+ok 4 - ProtocolLane: complete original workflow, calculation and rejected invalid transition
+  ---
+  duration_ms: 2.295167
   type: 'test'
   ...
 # Subtest: real file restart, optimistic conflict and validated restore into an empty database
-ok 2 - real file restart, optimistic conflict and validated restore into an empty database
+ok 5 - real file restart, optimistic conflict and validated restore into an empty database
   ---
-  duration_ms: 2.732542
+  duration_ms: 3.025875
   type: 'test'
   ...
 # Subtest: HTTP prevents anonymous reads and cross-origin/CSRF writes while authenticated workflow saves
-ok 3 - HTTP prevents anonymous reads and cross-origin/CSRF writes while authenticated workflow saves
+ok 6 - HTTP prevents anonymous reads and cross-origin/CSRF writes while authenticated workflow saves
   ---
-  duration_ms: 73.270625
+  duration_ms: 71.255416
   type: 'test'
   ...
 # Subtest: two products on one host use isolated session cookies and preserve both logins
-ok 4 - two products on one host use isolated session cookies and preserve both logins
+ok 7 - two products on one host use isolated session cookies and preserve both logins
   ---
-  duration_ms: 86.628792
+  duration_ms: 87.793958
   type: 'test'
   ...
-1..4
-# tests 4
+1..7
+# tests 7
 # suites 0
-# pass 4
+# pass 7
 # fail 0
 # cancelled 0
 # skipped 0
 # todo 0
-# duration_ms 210.236167
+# duration_ms 209.406458

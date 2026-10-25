@@ -1,0 +1,127 @@
+{
+  "date": "2026-10-25",
+  "product": "protocollane",
+  "baseline_commit": "4ebff64978dce8f59c84a11eeb4bcc7d62736675",
+  "before_fix": {
+    "archived_task_quote_missing_after_source_edit": true,
+    "new_task_on_archived_source_accepted": true,
+    "archived_source_done_task_reopened": true,
+    "ui_selector": {
+      "disabled": false,
+      "missing": true,
+      "options": [
+        "Выберите значение",
+        "SYNTHETIC draft source",
+        "SYNTHETIC live source"
+      ],
+      "value": ""
+    },
+    "regression_tests_initially_failed": 3,
+    "baseline_log": "baseline-regressions.txt"
+  },
+  "policy": [
+    "Draft transcript edit preserves previously present quotes of all linked tasks,including archives",
+    "New/changed source links and reopening done task require a nonarchived meeting",
+    "Existing open task on archived source can change task fields/finish;done history can be corrected;explicit move to live source remains allowed",
+    "Current archived source remains selected with Archive marker;new form omits archived sources",
+    "Legacy already-invalid archived quotes can restore and do not freeze unrelated writes;not silently repaired"
+  ],
+  "tests": {
+    "passed": 7,
+    "failed": 0,
+    "runtime": "v24.19.0",
+    "log": "docs/test-output.txt",
+    "lifecycle": "tests/history.test.js",
+    "coverage": [
+      "source quote protection including archived tasks with all state/audit unchanged on refusal",
+      "new open/done links,retarget,reopen rejected;finish/correction/explicit active-source reassignment allowed",
+      "real file restart and empty restore retain guards/history;legacy invalid archived quote remains unchanged",
+      "original auth/CSRF/Origin/cookie/conflict workflows retained"
+    ]
+  },
+  "browser": {
+    "data": "synthetic only,localhost8834",
+    "selector_after": {
+      "missing": false,
+      "options": [
+        "Выберите значение",
+        "SYNTHETIC draft source",
+        "SYNTHETIC archived source · Архив",
+        "SYNTHETIC live source"
+      ],
+      "selected": "SYNTHETIC archived source · Архив",
+      "value": "8b75b019-aef5-42cc-b6b9-c3f45170db0e"
+    },
+    "authenticated_http": {
+      "authenticated_http": true,
+      "all5_rejections_preserved_entire_state_and_audit": true,
+      "revision": 9,
+      "audit_events": 9,
+      "results": [
+        {
+          "kind": "new_open",
+          "status": 400,
+          "error": "Новая связь или повторное открытие задачи требуют неархивного протокола."
+        },
+        {
+          "kind": "new_done",
+          "status": 400,
+          "error": "Новая связь или повторное открытие задачи требуют неархивного протокола."
+        },
+        {
+          "kind": "retarget",
+          "status": 400,
+          "error": "Новая связь или повторное открытие задачи требуют неархивного протокола."
+        },
+        {
+          "kind": "reopen_done",
+          "status": 400,
+          "error": "Новая связь или повторное открытие задачи требуют неархивного протокола."
+        },
+        {
+          "kind": "remove_archived_quote",
+          "status": 400,
+          "error": "Сохраните исходные цитаты задач, включая архивные, или создайте новый протокол."
+        }
+      ]
+    },
+    "rejections": {
+      "reopen_and_source_edit_rejected": true,
+      "all_data_unchanged": true,
+      "revision": 9,
+      "audit_events": 9
+    },
+    "saved_and_reloaded": {
+      "selected_archived_source_restored": true,
+      "new_form_excludes_archived_sources": true,
+      "source_preserving_context_edit_saved": true,
+      "existing_open_task_finished_with_original_source_and_quote": true,
+      "archived_task_and_original_done_live_tasks_unchanged": true,
+      "new_live_task_saved": true,
+      "reload_show_archive_readable": true,
+      "revision": 12,
+      "audit_events": 12
+    },
+    "screens": [
+      "docs/before-missing-source.jpg",
+      "docs/reopen-rejected.jpg",
+      "docs/source-edit-rejected.jpg",
+      "docs/history-and-live-tasks.jpg"
+    ]
+  },
+  "runtime": {
+    "previous_main_pid": 79640,
+    "main_pid": 85860,
+    "restarted": true,
+    "owned_cwd_command_checked": true,
+    "evidence": "work/program/runtime-reloads/protocollane-history-20261025",
+    "saved_workspace_payload_revision_audit_unchanged": 18
+  },
+  "limits": [
+    "Done is manual status,not proof of external task performance or participant consent",
+    "No immutable full transcript version snapshots;allowed explicit task/source corrections may change association",
+    "Legacy invalid archive data is not silently repaired",
+    "No audio/ASR/automatic task extraction/integrations/hosted SaaS",
+    "No fresh whole-interface/security audit or customer acceptance"
+  ]
+}
